@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * 自定义账号密码登录拦截器
  * @author jeffchen
  * @date 2023/11/01 17:06
  */

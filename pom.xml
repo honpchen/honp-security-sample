@@ -6,6 +6,7 @@
     <modules>
         <module>security-auth-demo</module>
         <module>security-jwt-demo</module>
+        <module>security-oauth-login-demo</module>
     </modules>
 
     <parent>
