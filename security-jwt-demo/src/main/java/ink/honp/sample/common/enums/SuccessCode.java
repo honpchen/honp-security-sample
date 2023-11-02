@@ -1,7 +1,7 @@
 package ink.honp.sample.common.enums;
 
 
-import ink.honp.sample.common.entity.ResponseCode;
+import ink.honp.sample.common.enums.ResponseCode;
 
 /**
  * @author jeff chen

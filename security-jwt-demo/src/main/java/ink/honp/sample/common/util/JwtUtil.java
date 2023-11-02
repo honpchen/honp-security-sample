@@ -1,5 +1,6 @@
 package ink.honp.sample.common.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ink.honp.sample.common.enums.CommonErrorCode;
 import ink.honp.sample.common.exception.BizException;
 import io.jsonwebtoken.Claims;
@@ -23,6 +24,7 @@ public abstract class JwtUtil {
 
     private static final Integer EXPIRES_IN = 2 * 60 *60;
     private static final String DATA_KEY = "data";
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     /**
      * 从 JWT Token 中解析授权信息
@@ -48,7 +50,7 @@ public abstract class JwtUtil {
             }
 
             // 返回 Token 中保存的用户信息
-            return JsonUtil.toBean(body.get(DATA_KEY).toString(), clz);
+            return OBJECT_MAPPER.readValue(body.get(DATA_KEY).toString(), clz);
         } catch (Exception e) {
             log.warn("AccessToken 解析失败：{}", e.getMessage());
             throw new BizException(CommonErrorCode.NOT_AUTH);
@@ -60,7 +62,7 @@ public abstract class JwtUtil {
         try {
             return Jwts.builder()
                     // jwt payload --> KV
-                    .claim(DATA_KEY, JsonUtil.toStr(userData))
+                    .claim(DATA_KEY, OBJECT_MAPPER.writeValueAsString(userData))
                     // jwt id
                     .setId(UUID.randomUUID().toString())
                     // jwt 过期时间

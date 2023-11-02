@@ -1,6 +1,6 @@
 package ink.honp.sample.common.exception;
 
-import ink.honp.sample.common.enums.ErrorCode;
+import ink.honp.sample.common.ErrorCode;
 import lombok.Getter;
 
 /**

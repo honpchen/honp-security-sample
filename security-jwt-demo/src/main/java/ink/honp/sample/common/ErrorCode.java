@@ -1,7 +1,7 @@
-package ink.honp.sample.common.enums;
+package ink.honp.sample.common;
 
 
-import ink.honp.sample.common.entity.ResponseCode;
+import ink.honp.sample.common.enums.ResponseCode;
 
 /**
  * 错误标识接口

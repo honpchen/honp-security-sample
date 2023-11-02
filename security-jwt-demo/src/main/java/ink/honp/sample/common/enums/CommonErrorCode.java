@@ -1,5 +1,7 @@
 package ink.honp.sample.common.enums;
 
+import ink.honp.sample.common.ErrorCode;
+
 /**
  * 通用错误码
  * @author jeff chen

@@ -1,4 +1,4 @@
-package ink.honp.sample.common.entity;
+package ink.honp.sample.common.enums;
 
 /**
  * @author jeff chen

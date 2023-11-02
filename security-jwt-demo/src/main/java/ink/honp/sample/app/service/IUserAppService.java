@@ -1,7 +1,7 @@
 package ink.honp.sample.app.service;
 
 import ink.honp.sample.app.vo.UserVO;
-import org.springframework.http.ResponseEntity;
+import ink.honp.sample.common.Response;
 
 /**
  * @author jeffchen
@@ -9,5 +9,5 @@ import org.springframework.http.ResponseEntity;
  */
 public interface IUserAppService {
 
-    ResponseEntity<UserVO> getUser(Long id);
+    Response<UserVO> getUser(Long id);
 }

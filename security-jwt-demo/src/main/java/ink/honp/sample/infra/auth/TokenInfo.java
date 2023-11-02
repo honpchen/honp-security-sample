@@ -9,6 +9,8 @@ import lombok.Data;
 @Data
 public class TokenInfo {
 
+    private Long userId;
+
     private String username;
 
     private String accessToken;

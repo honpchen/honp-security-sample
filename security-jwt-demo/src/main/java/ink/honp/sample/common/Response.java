@@ -1,6 +1,5 @@
-package ink.honp.sample.common.entity;
+package ink.honp.sample.common;
 
-import ink.honp.sample.common.enums.ErrorCode;
 import ink.honp.sample.common.enums.SuccessCode;
 import lombok.Getter;
 import lombok.Setter;

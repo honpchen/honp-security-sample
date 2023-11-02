@@ -1,5 +1,6 @@
 package ink.honp.sample.infra.auth;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,8 +11,10 @@ import java.util.List;
  * @author jeffchen
  * @date 2023/11/01 18:05
  */
+@Data
 public class CustomUserDetails implements UserDetails {
 
+    private Long id;
     private String username;
     private String password;
     private List<GrantedAuthority> authorities;

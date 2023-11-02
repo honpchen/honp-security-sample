@@ -1,7 +1,8 @@
 package ink.honp.sample.controller;
 
+import ink.honp.sample.app.service.IUserAppService;
 import ink.honp.sample.app.vo.UserVO;
-import org.springframework.http.ResponseEntity;
+import ink.honp.sample.common.Response;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserVO> getUser(@PathVariable Long userId) {
+    private final IUserAppService userAppService;
 
-        return null;
+    public UserController(IUserAppService userAppService) {
+        this.userAppService = userAppService;
+    }
+
+    @GetMapping("/{userId}")
+    public Response<UserVO> getUser(@PathVariable Long userId) {
+
+        return userAppService.getUser(userId);
     }
 }

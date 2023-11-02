@@ -11,12 +11,4 @@
 
     <artifactId>security-jwt-demo</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>ink.honp.sample</groupId>
-            <artifactId>security-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-
 </project>

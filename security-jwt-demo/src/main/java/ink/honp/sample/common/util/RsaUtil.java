@@ -1,7 +1,6 @@
 package ink.honp.sample.common.util;
 
-import ink.honp.sample.common.enums.Algorithm;
-import ink.honp.sample.common.exception.SystemException;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +18,7 @@ import java.util.Base64;
  * @author jeff chen
  * @since 1.0.0
  */
+@Slf4j
 public abstract class RsaUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(RsaUtil.class);
@@ -37,7 +37,7 @@ public abstract class RsaUtil {
         try {
             RSAPublicKey pubKey = (RSAPublicKey) getPublicKey(publicKey);
 
-            Cipher cipher = Cipher.getInstance(Algorithm.RSA.getCode());
+            Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.ENCRYPT_MODE, pubKey);
 
             return Base64.getEncoder().encodeToString(cipher.doFinal(plaintext.getBytes(StandardCharsets.UTF_8)));
@@ -60,7 +60,7 @@ public abstract class RsaUtil {
             //base64编码的私钥
             RSAPrivateKey priKey = (RSAPrivateKey) getPrivateKey(privateKey);
 
-            Cipher cipher = Cipher.getInstance(Algorithm.RSA.getCode());
+            Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.DECRYPT_MODE, priKey);
 
             return new String(cipher.doFinal(inputByte));
@@ -78,11 +78,11 @@ public abstract class RsaUtil {
         PKCS8EncodedKeySpec priPKCS8 = new PKCS8EncodedKeySpec(encodedKey);
 
         try {
-            return KeyFactory.getInstance(Algorithm.RSA.getCode()).generatePrivate(priPKCS8);
+            return KeyFactory.getInstance("RSA").generatePrivate(priPKCS8);
         } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
-
-            throw new SystemException(e);
+            log.error("{}", e.getMessage(), e);
         }
+        return null;
     }
 
 
@@ -94,10 +94,12 @@ public abstract class RsaUtil {
 
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(encodedKey);
         try {
-            return KeyFactory.getInstance(Algorithm.RSA.getCode()).generatePublic(keySpec);
+            return KeyFactory.getInstance("RSA").generatePublic(keySpec);
         } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
-            throw new SystemException(e);
+            log.error("{}", e.getMessage(), e);
         }
+
+        return null;
     }
 
     /**
@@ -107,7 +109,7 @@ public abstract class RsaUtil {
     public static void generateKeyPair(Integer keySize) {
         // KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象
         try {
-            KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(Algorithm.RSA.getCode());
+            KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
             // 初始化密钥对生成器
             keyPairGen.initialize(keySize, new SecureRandom());
             // 生成一个密钥对，保存在keyPair中
@@ -122,7 +124,7 @@ public abstract class RsaUtil {
             LOG.info("公钥：{}", publicKeyHex);
             LOG.info("密钥：{}", privateKeyHex);
         } catch (NoSuchAlgorithmException e) {
-            throw new SystemException(e);
+            log.error("{}", e.getMessage(), e);
         }
 
     }
