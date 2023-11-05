@@ -11,14 +11,15 @@ spring:
         registration:
           okta:
             assertingparty:
-              entity-id: http://www.okta.com/exkd35z6y0lZIaVwn5d7
-              metadata-uri: https://dev-22549583.okta.com/app/exkd35z6y0lZIaVwn5d7/sso/saml/metadata
-              verification:
-                credentials:
-                  - certificate-location: "classpath:okta.cert"
-              singlesignon:
-                url: https://dev-22549583.okta.com/app/dev-22549583_chtlabstest02_1/exkd35z6y0lZIaVwn5d7/sso/saml
-                sign-request: false
+              metadata-uri: https://dev-xxxxx.okta.com/app/xxxxx/sso/saml/metadata
+            signing:
+              credentials:
+                - private-key-location: classpath:local.key
+                  certificate-location: classpath:local.crt
+            singlelogout:
+              binding: POST
+              response-url: "{baseUrl}/logout/saml2/slo"
+
 logging:
   level:
     org.springframework.security: DEBUG

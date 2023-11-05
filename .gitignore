@@ -35,3 +35,5 @@ build/
 /honp-security-sample.iml
 /mvnw
 /mvnw.cmd
+/security-saml2-login-demo/src/main/resources/local.crt
+/security-saml2-login-demo/src/main/resources/local.key
