@@ -11,7 +11,7 @@ spring:
         registration:
           okta:
             assertingparty:
-              metadata-uri: https://dev-xxxxx.okta.com/app/xxxxx/sso/saml/metadata
+              metadata-uri: https://dev-22549583.okta.com/app/exkd3rl5a5kPyTfg55d7/sso/saml/metadata
             signing:
               credentials:
                 - private-key-location: classpath:local.key
@@ -19,6 +19,11 @@ spring:
             singlelogout:
               binding: POST
               response-url: "{baseUrl}/logout/saml2/slo"
+          azure:
+            assertingparty:
+              metadata-uri: xxxxxx
+            singlesignon:
+              url: xxxxxx
 
 logging:
   level:

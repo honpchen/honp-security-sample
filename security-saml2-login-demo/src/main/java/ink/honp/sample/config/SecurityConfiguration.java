@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.saml2.provider.service.authentication.OpenSaml4AuthenticationProvider;
 import org.springframework.security.saml2.provider.service.authentication.OpenSamlAuthenticationProvider;
 import org.springframework.security.saml2.provider.service.authentication.OpenSamlAuthenticationRequestFactory;
 import org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistration;
@@ -20,7 +19,6 @@ import org.springframework.security.saml2.provider.service.servlet.filter.Saml2W
 import org.springframework.security.saml2.provider.service.servlet.filter.Saml2WebSsoAuthenticationRequestFilter;
 import org.springframework.security.saml2.provider.service.web.DefaultRelyingPartyRegistrationResolver;
 import org.springframework.security.saml2.provider.service.web.DefaultSaml2AuthenticationRequestContextResolver;
-import org.springframework.security.saml2.provider.service.web.authentication.OpenSaml4AuthenticationRequestResolver;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,8 +69,6 @@ public class SecurityConfiguration {
         Converter<HttpServletRequest, RelyingPartyRegistration> relyingPartyRegistrationResolver =
                 new DefaultRelyingPartyRegistrationResolver(this.relyingPartyRegistrationRepository);
 
-//        OpenSaml4AuthenticationRequestResolver requestResolver =
-//                new OpenSaml4AuthenticationRequestResolver(new DefaultRelyingPartyRegistrationResolver(relyingPartyRegistrationRepository));
         DefaultSaml2AuthenticationRequestContextResolver requestResolver = new DefaultSaml2AuthenticationRequestContextResolver(relyingPartyRegistrationResolver);
         return new Saml2WebSsoAuthenticationRequestFilter(requestResolver, new OpenSamlAuthenticationRequestFactory());
     }
